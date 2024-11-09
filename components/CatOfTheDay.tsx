@@ -18,8 +18,18 @@ export default function CatOfTheDay() {
 
     useEffect(() => {
         const loadCatOfDay = async () => {
-            const cat = await fetchRandomCat();
-            setCatOfDay(cat);
+            const storedCat = localStorage.getItem("catOfDay");
+            const storedDate = localStorage.getItem("catOfDayDate");
+            const today = new Date().toISOString().split("T")[0];
+
+            if (storedCat && storedDate === today) {
+                setCatOfDay(JSON.parse(storedCat));
+            } else {
+                const cat = await fetchRandomCat();
+                setCatOfDay(cat);
+                localStorage.setItem("catOfDay", JSON.stringify(cat));
+                localStorage.setItem("catOfDayDate", today);
+            }
         };
         loadCatOfDay();
     }, []);
