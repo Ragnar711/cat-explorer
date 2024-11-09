@@ -7,7 +7,7 @@ export default async function ComparePage() {
 
     return (
         <div className="space-y-6">
-            <Link href="/" className="text-blue-500 hover:underline">
+            <Link href="/" className="text-[#26549e] hover:underline">
                 ← Back to Home
             </Link>
             <h1 className="text-3xl font-bold">Breed Comparison</h1>
